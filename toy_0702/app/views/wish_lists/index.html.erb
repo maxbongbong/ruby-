@@ -1,0 +1,48 @@
+<style>
+  .container td{
+    text-align:center;
+    vertical-align:middle;
+  }
+  .table th{
+    text-align:center;
+  }
+</style>
+<div class="container" style="padding-top:13rem;">
+  <h4 class="title" style="line-height:3;">찜하기</h4>
+  <table class="table border-bottom m-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">이미지</th>
+        <th scope="col">상품이름</th>
+        <th scope="col">상품정보</th>
+        <th scope="col">가격</th>
+        <th scope="col">-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @wish_lists.present? %>
+        <% @wish_lists.each_with_index do |wish_list, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td>
+              <%= link_to product_path(wish_list.product) do %>
+                <%= image_tag(wish_list.product.image_url, alt:"", style:"width:50px;")%>
+              <% end %>
+            </td>
+            <td><%= wish_list.product.title %></td>
+            <td><%= wish_list.product.body %></td>
+            <td><%= number_with_delimiter(wish_list.product.price) %></td>
+            <td><%= link_to "삭제하기", wish_list_path(wish_list), class:"btn btn-dark", style:"", data:{method: :delete} %>
+                <%= link_to "장바구니", add_cart_line_items_path(product_id: wish_list.product.id), class:"btn btn-dark" %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <td align="center">
+          <%= "찜목록이 비어 있습니다." %>
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,22 @@
+<% line_item ||= nil %>
+<% if line_item.present? %>
+  <div class="card-group my-3" style="margin-left:100px;">
+    <div class="card" style="width:200px; height:220px;">
+      <%= image_tag(line_item.product.image_url, class:"card-img-top my-3", alt:"", style:"width:190px; height:190px; ")%>
+    </div>
+    <div class="card col-md-6 py-1" style="" >
+      <h5 class="card-title"><%= line_item.product.title %></h5>
+      <p class="card-text"><%= line_item.product.body %></p>
+      <p class="card-text text-muted">계 :<span id="quantity-<%= line_item.id %>"><%= number_with_delimiter(line_item.quantity ? line_item.quantity : 1) %></p>
+      <p class="card-text border-bottom">총: <strong class="text-muted"><%= number_with_delimiter(line_item.product.price) %> 원</strong></p>
+      <div calss="span">
+        <%= link_to "쇼핑더하기", products_path, class:"btn btn-dark my-3", style:"float:right; width:100px;" %>
+        <%= link_to "홈", root_path, class:"btn btn-dark mx-2 my-3", style:"float:right; width:50px;" %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="card-title">
+    주문 내역이 없습니다.
+  </div>
+<% end %>

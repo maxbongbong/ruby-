@@ -1,0 +1,17 @@
+<div class="container" style="padding-top:12.0rem">
+  <div class = "colorlib-work">
+    <div class = "row pt-4">
+      <% @products.each_with_index do |product,index| %>
+        <% if index % 4 == 0 %>
+        <% end %>
+        <div class="col-md-3 pt-0 px-0" >
+          <%= link_to product_path(product) do %>
+            <%= render 'shared/product', product: product %>
+          <% end %>
+        </div>
+        <% if (@products.count == (index+1)) || (index % 4 == 3) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

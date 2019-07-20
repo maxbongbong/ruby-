@@ -1,0 +1,24 @@
+<div class="container" style="padding-top:13rem;">
+	<h4 class = "pb-3 m-3">문의 내용 수정</h4>
+	<div class="contact-new p-2">
+	<%= form_for @contact do |f| %>
+			<div class="col-md-12">
+	      <%= f.hidden_field :user_id, value: current_user.id %>
+	      <%= f.hidden_field :contact_id, value: @contact.id %>
+			</div>
+			<div class="row form-group">
+				<div class="col-md-12">
+	        <%= f.text_field :title, class: "form-control", placeholder: "제목 : 내용을 적어주세요." %>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-md-12">
+	        <%= f.text_area :body, class: "form-control", placeholder: "문의 내용을 상세하게 적어주세요.", style: "height:300px;" %>
+				</div>
+			</div>
+	    <br>
+	  <div class="btn btn-dark" style="float:right">
+	    <%= link_to "수정하기", contacts_path, style:"color:white"  %>
+	  </div>
+	<% end %>
+</div>

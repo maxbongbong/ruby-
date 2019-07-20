@@ -1,0 +1,63 @@
+<style>
+  .table th{
+    text-align:center;
+  }
+  .table td{
+    text-align:center;
+    width:3px;
+    vertical-align:middle;
+  }
+</style>
+<div class="container" style="padding-top:13rem;">
+  <h5 class="row px-3 py-3">결제 확인</h5>
+  <table class="table border-bottom ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">이미지</th>
+        <th scope="col">상품이름</th>
+        <th scope="col">상품정보</th>
+        <th scope="col">가격</th>
+        <th scope="col">수량</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @order.present? %>
+        <% @order.line_items.each_with_index do |line_item, index|  %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= image_tag(line_item.product.image_url, alt:"", style:"height:60px;")%></td>
+            <td><%= line_item.product.title %></td>
+            <td><%= line_item.product.body %></td>
+            <td><strong><%= number_with_delimiter(line_item.product.price) %> 원</strong></td>
+            <td><span id="quantity-<%= line_item.id %>"><%= number_with_delimiter(line_item.quantity ? line_item.quantity : 1) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row m-1" style="float:right">
+    <strong>총 :
+      <span id="item-total">
+        <%= number_with_delimiter @order.line_items.sum(:amount) %>
+      </span>원
+    </strong>
+  </div>
+  <div class="table border-top border-bottom py-3" style="margin-top:70px;" >
+    <h5 style="padding-top:10px;">주소 입력</h5>
+  </div>
+  <%= form_for @order, url: payment_completed_order_path(@order), method: :post do |f| %>
+    <div class="block p-4">
+      <div class="btn m-4" style="float:right">
+        <%= f.submit "결제하기", class: "btn btn-dark" %>
+      </div>
+      <%= f.text_field :address_1, style:"margin-bottom:10px;padding:15px;border:solid 1px lightgray;border-radius:10px;width:700px;"%>
+        <div class="button button-outline zipcode_btn col-30 m-3" style="padding-bottom:10px">
+          주소검색
+        </div>
+      <%= f.text_field :address_2, placeholder: "상세주소 입력", style:"margin-bottom:10px;padding:15px;border:solid 1px lightgray;border-radius:10px; width:700px;"%>
+    </div>
+      <%= f.hidden_field :state, value: :complete %>
+
+  <% end %>
+</div>

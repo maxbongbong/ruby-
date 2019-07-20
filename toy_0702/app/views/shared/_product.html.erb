@@ -1,0 +1,18 @@
+<style>
+  .div{}h5{
+    font-weight:80;
+  }
+</style>
+<% product ||= nil %>
+<% if product.present? %>
+  <div class="card" style="color:black; ">
+    <img class="card-img-top" src="<%= product.image.url %>" alt="Card image cap" style="width:100%">
+    <div class="card-body">
+      <h3 class="card-title" style="font-weight:600"><%= product.title %></h3>
+      <h5 class="card-text"><%= product.body %></h5>
+    </div>
+    <ul class="list pl-3">
+      <p class="card-group-item"><%= number_with_delimiter(product.price) %>원</p>
+    </ul>
+  </div>
+<% end %>

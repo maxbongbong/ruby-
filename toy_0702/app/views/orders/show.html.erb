@@ -1,0 +1,61 @@
+<style>
+  .table th{
+    text-align:center;
+  }
+  .table td{
+    text-align:center;
+    vertical-align:middle;
+  }
+  .list div{
+    vertical-align:middle;
+  }
+</style>
+<div class="container" style="padding-top:14rem;">
+  <h5 align="center">주문완료</h5>
+  <div class="span" style="padding-top:15px;" >
+    <h5>결제 정보</h5>
+  </div>
+  <div class="list border-bottom border-top p-3" style="margin-top:25px;">
+    <div>
+      결제일 : <%= @order.completed_at&.strftime("%Y/%m/%d %H:%M") %>
+    </div>
+    <div>
+      number : <%= @order.id %><br>
+    </div>
+    <div>
+      주소 : <%= @order.address_1 %> <br>
+      상세주소 : <%= @order.address_2 %>
+    </div>
+  </div>
+  <div class="span pt-4">
+    <h5>결제 상품</h5>
+  </div>
+  <table class="table table-striped border-bottom m-3">
+    <thead>
+      <tr>
+        <th scope="col">상품</th>
+        <th scope="col">상품이름</th>
+        <th scope="col">상품정보</th>
+        <th scope="col">가격</th>
+        <th scope="col">수량</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @order.present? %>
+        <% @order.line_items.each do |line_item|  %>
+          <tr>
+            <td><%= image_tag(line_item.product.image_url, alt:"", style:"height:40px;")%></td>
+            <td><%= line_item.product.title %></td>
+            <td><%= line_item.product.body %></td>
+            <td><strong><%= number_with_delimiter(line_item.product.price) %> 원</strong></td>
+            <td><span id="quantity-<%= line_item.id %>"><%= number_with_delimiter(line_item.quantity) %></span></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="span p-4">
+    <%= link_to "주문내역", orders_path, class:"btn btn-dark", style:"float:right" %>
+    <%= link_to '홈', root_path, class:"btn btn-dark mx-2", style:"float:right;" %>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<style>
+  .table td{
+    vertical-align:unset;
+    padding: 5px; 12px;
+    text-align:center;
+  }
+  .table th{
+    text-align:center;
+  }
+  .table h5{
+    padding:5px;
+  }
+</style>
+<div class="container" style="padding-top:14rem; margin-left:100px;">
+  <h3 align="center">고객 센터 Q&A</h3>
+  <table class="table m-4 border-bottom">
+    <thead>
+      <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">내용</th>
+        <th scope="col">email</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @contacts.present? %>
+        <% @contacts.each_with_index do |contact,index| %>
+          <tr>
+              <td>
+                <%= link_to contact_path(contact) do %>
+                  <h5><%= index+1 %></h5>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to contact_path(contact) do %>
+                  <h5><%= contact.title %></h5>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to contact_path(contact) do %>
+                  <h5><%= contact.body %></h5>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to contact_path(contact) do %>
+                  <h5><%= contact.user.email %></h5>
+                <% end %>
+              </td>
+          <td>
+            <div class="btn btn-light" style="margin-top:">
+              <%= link_to "수정하기", edit_contact_path(contact) %>
+            </div>
+            <div class="btn btn-light">
+              <%= link_to "삭제하기", contact_path(contact), data:{method: :delete} %>
+            </div>
+          </td>
+        <% end %>
+      <% else %>
+        <td align="center">
+          문의 내역이 없습니다.
+        </td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-dark" style="float:right">
+    <%= link_to "문의하기", new_contact_path, style:"border-radius:2px; color:white;" %>
+  </button>
+</div>

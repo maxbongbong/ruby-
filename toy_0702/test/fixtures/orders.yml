@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  amount: 1
+  completed_at: 2019-07-04 14:17:50
+  address_1: MyString
+  address_2: MyString
+  state: MyString
+  user: one
+  note: MyText
+  paied_at: 2019-07-04 14:17:50
+  payment_amount: 1
+
+two:
+  number: MyString
+  amount: 1
+  completed_at: 2019-07-04 14:17:50
+  address_1: MyString
+  address_2: MyString
+  state: MyString
+  user: two
+  note: MyText
+  paied_at: 2019-07-04 14:17:50
+  payment_amount: 1

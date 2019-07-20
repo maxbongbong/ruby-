@@ -1,0 +1,108 @@
+<style>
+  .table th{
+    text-align:center;
+  }
+  .table td{
+    text-align:center;
+    vertical-align:middle;
+  }
+  .row div{
+    text-align:center;
+  }
+</style>
+<div class="container" style="padding-top:14rem; margin-left:110px;">
+  <h4 class="px-4 py-2">장바구니 목록</h4>
+  <table class="table border-bottom m-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">이미지</th>
+        <th scope="col">상품이름</th>
+        <th scope="col">상품정보</th>
+        <th scope="col">가격</th>
+        <th scope="col">수량</th>
+        <th scope="col">-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @order.present? %>
+        <% @order.line_items.each_with_index do |line_item, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= image_tag(line_item.product.image_url, alt:"", style:"width:50px;")%></td>
+            <td><%= line_item.product.title %></td>
+            <td><%= line_item.product.body %></td>
+            <td><strong><span class="amount" id="amount-<%= line_item.id %>"><%= number_with_delimiter(line_item.product.price*(line_item.quantity ? line_item.quantity : 1)) %></span>원</strong></td>
+            <td>
+              <div class="row" style="width:120%;">
+                <div class="col-md-4">
+                  <%= link_to "-", "#", class: "minus_btn", data:{id: line_item.id, price: line_item.product.price} %>
+                </div>
+                <div class="col-md-4">
+                  <span id="quantity-<%= line_item.id %>"><%= number_with_delimiter(line_item.quantity ? line_item.quantity : 1) %></span>
+                </div>
+                <div class="col-md-4">
+                  <%= link_to "+", "#", class: "plus_btn", data:{id: line_item.id, price: line_item.product.price} %>
+                </div>
+              </div>
+            </td>
+            <td><%= link_to "삭제하기", line_item_path(line_item),class:"btn btn-dark", style:"", data:{method: :delete} %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <td align="center">
+          장바구니가 비어 있습니다.
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="total-area" style= "float:right; text-align:center;">
+    <strong>총 :
+      <span id="item-total">
+        <%= number_with_delimiter @order.line_items.sum(:amount) %>
+      </span>원<hr>
+    </strong>
+    <div class="btn-buy mx-3 px-4" >
+      <%= link_to "결제하기", payment_order_path(@order), class:"btn btn-dark" %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".minus_btn, .plus_btn").click(function(){
+    var line_item_id = $(this).data("id");
+    // let before_amount = parseInt($("#amount-"*line_item_id).text());
+    let original_price = parseInt($(this).data("price"));
+    let before_qauntity = parseInt($("#quantity-"+line_item_id).text());
+    if($(this).hasClass("plus_btn")){
+      $("#quantity-"+line_item_id).text(before_qauntity+1)
+    }else if(before_qauntity > 1){
+      $("#quantity-"+line_item_id).text(before_qauntity-1)
+    }
+    let item_amount = original_price*parseInt($("#quantity-"+line_item_id).text())
+    $("#amount-"+line_item_id).text(numberWithCommas(item_amount));
+
+    $.ajax({
+      url: "<%= update_amount_line_items_path %>",
+      type: "GET",
+      data: {
+        quantity: $("#quantity-"+line_item_id).text(),
+        line_item_id: line_item_id
+      }
+    });
+    updateItemTotal();
+    return false;
+  })
+
+  function updateItemTotal(){
+    var total = 0;
+    $(".amount").each(function(){
+      // console.log(parseInt($(this).text().replace(/\,/gi, "")));
+      total = total + parseInt($(this).text().replace(/\,/gi, ""));
+    });
+    $("#item-total").text(numberWithCommas(total));
+  }
+  window.onload = function(){
+    updateItemTotal();
+  }
+</script>

@@ -1,0 +1,24 @@
+<div class="container" style="padding-top:13rem;">
+	<h4 class=" pb-3 m-3">문의 내용</h4>
+	<div class="contact-new p-2">
+		<%= form_for @contact do |f| %>
+			<div class="col-md-12">
+	      <%= f.hidden_field :user_id, value: current_user.id %>
+	      <%= f.hidden_field :contact_id, value: @contact.id %>
+			</div>
+			<div class="row form-group">
+				<div class="col-md-12 pb-2">
+	        <%= f.text_field :title, class: "form-control", placeholder: "제목을 적어주세요." %>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-md-12 pb-2">
+	        <%= f.text_area :body, class: "form-control", placeholder: "문의 내용을 상세하게 적어주세요.", style: "height:300px;" %>
+				</div>
+			</div>
+			<div style="float:right">
+		    <input type="submit" value="문의 하기" class="btn btn-dark">
+			</div>
+		<% end %>
+	</div>
+</div>

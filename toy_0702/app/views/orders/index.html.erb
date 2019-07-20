@@ -1,0 +1,14 @@
+<div class = "container" style="padding-top:14rem;">
+  <h4 class= py-3>주문 내역</h4>
+  <% if @orders %>
+    <% @orders.each do |order| %>
+      <% order.line_items.each do |line_item| %>
+          <%= link_to order_path(order) do %>
+            <%= render '/shared/line_item', line_item: line_item %>
+          <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    주문 내역이 없습니다.
+  <% end %>
+</div>
