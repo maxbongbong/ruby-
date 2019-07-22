@@ -1,0 +1,98 @@
+<style>
+  .nav div{}ul{}h1{}a{
+    color:black;
+    font-weight:900;
+  }
+  .ul-content div{
+    padding-top:8px;
+  }
+  .navbar div{}ul{}ul{
+    margin-top:8px;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top d-block border-bottom" style="height:70px;" >
+  <div class="ul-content">
+    <ul class="nav-item nav-link" style="float:right;">
+      <% if current_user %>
+        <%= link_to destroy_user_session_path, style:"color:black", data:{method: :delete} do %>logout
+          <%= fa_icon "close", style:"color:black" %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, style:"color:black" do %>login
+          <%= fa_icon "circle", style:"color:black" %>
+        <% end %>
+      <% end %>
+    </ul>
+    <ul class="dropdown pl-0" style="float:right">
+      <button class="btn btn-secondary dropdown-toggle" style="background-color:white; color:black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <i class="fa fa-user">Mypage</i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+        <a class="dropdown-item" href="/orders">주문내역</a>
+        <a class="dropdown-item" href="/wish_lists">찜목록</a>
+        <a class="dropdown-item" href="/users/edit">회원정보</a>
+      </div>
+    </ul>
+    <ul class= "nav-item nav-link" style="float:right">
+      <%= fa_icon "heart" %>
+      <a href="/wish_lists" style="color:black">My heart</a>
+    </ul>
+    <ul class="nav-item nav-link" style="float:right">
+      <%= fa_icon "bell" %>
+      <a href="/contacts" style="color:black;">Contact</a>
+    </ul>
+    <ul class= "nav-item nav-link" style="float:right">
+      <%= fa_icon "shopping-cart" %>
+      <a href="/orders/cart" style="color:black">cart</a>
+    </ul>
+    <div>
+      <a class="navbar-brand pb-2 py-1" href="/" style="outline:double; padding-left:5px; padding-right:5px; margin-bottom:8px;">Mega Pump</a>
+    </div>
+  </div>
+</nav>
+<div class="nav border-bottom" style="padding-top:5rem; margin-top:5px;">
+  <div class="row">
+    <ul class="nav-item">
+      <h1>
+        <a href="/products">Special-Order</a>
+        <a href="#category-1">Protein</a>
+        <a href="#category-2">Issue</a>
+        <a href="#category-3">Main</a>
+      </h1>
+    </ul>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
+<!-- <nav class="collapse navbar-collapse" style="float:left; padding-top:8rem;">
+  <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:flex-end;">
+    <ul class="navbar-nav pt-1" style="font-weight:900">
+      <ul class="nav-item active">
+        <a class="nav-item nav-link active" href="/">Home<span class="sr-only">(current)</span></a>
+      </ul>
+      <ul class="nav-item active">
+        <a class="nav-item nav-link" href="/products">Product</a>
+      </ul>
+    </ul>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom scroll-to-fixed-fixed" style=";">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height:30px;">
+    <ul class="navbar-nav mr-auto my-1">
+      <li class="nav-item active" style="padding-left:5rem;">
+        <a class="nav-item nav-link active" href="/">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="/products">Product</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

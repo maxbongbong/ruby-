@@ -8,7 +8,7 @@
     vertical-align:middle;
   }
 </style>
-<div class="container" style="padding-top:13rem;">
+<div class="container" style="padding-top:1.5rem;">
   <h5 class="row px-3 py-3">결제 확인</h5>
   <table class="table border-bottom ">
     <thead>
@@ -48,12 +48,10 @@
   </div>
   <%= form_for @order, url: payment_completed_order_path(@order), method: :post do |f| %>
     <div class="block p-4">
-      <div class="btn m-4" style="float:right">
-        <%= f.submit "결제하기", class: "btn btn-dark" %>
-      </div>
       <%= f.text_field :address_1, style:"margin-bottom:10px;padding:15px;border:solid 1px lightgray;border-radius:10px;width:700px;"%>
-        <div class="button button-outline zipcode_btn col-30 m-3" style="padding-bottom:10px">
+        <div class="button button-outline zipcode_btn col-30 my-3" style="padding-bottom:10px">
           주소검색
+          <%= f.submit "결제하기", class: "btn btn-dark", style:"float:right;" %>
         </div>
       <%= f.text_field :address_2, placeholder: "상세주소 입력", style:"margin-bottom:10px;padding:15px;border:solid 1px lightgray;border-radius:10px; width:700px;"%>
     </div>

@@ -1,5 +1,5 @@
-<div class="container" style="padding-top:10rem;">
-  <ul class="nav nav-pills mb-3 pt-5" id="pills-tab" role="tablist">
+<div class="container" style="padding-top:rem;">
+  <ul class="nav nav-pills mb-3 pt-2" id="pills-tab" role="tablist">
     <% Category.all.each_with_index do |category, index| %>
       <li class="nav-item pr-1">
         <a class="btn btn-dark nav-link <%= index == 0 ? 'active' : '' %>" id="category-<%= index %>-tab" style="background-color:white; color:black;"data-toggle="pill" href="#category-<%= index %>" role="tab" aria-controls="category-<%= index %>" aria-selected="true"><%= category.title %></a>
