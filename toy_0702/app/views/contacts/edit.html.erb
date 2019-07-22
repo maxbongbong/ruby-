@@ -1,7 +1,7 @@
 <div class="container" style="padding-top:13rem;">
 	<h4 class = "pb-3 m-3">문의 내용 수정</h4>
 	<div class="contact-new p-2">
-	<%= form_for @contact do |f| %>
+		<%= form_for @contact do |f| %>
 			<div class="col-md-12">
 	      <%= f.hidden_field :user_id, value: current_user.id %>
 	      <%= f.hidden_field :contact_id, value: @contact.id %>
@@ -17,8 +17,9 @@
 				</div>
 			</div>
 	    <br>
-	  <div class="btn btn-dark" style="float:right">
-	    <%= link_to "수정하기", contacts_path, style:"color:white"  %>
-	  </div>
-	<% end %>
+		  <div class="btn btn-dark" style="float:right">
+		    <input type = "submit" value = "수정 하기" class="btn btn-dark">
+		  </div>
+		<% end %>
+	</div>
 </div>

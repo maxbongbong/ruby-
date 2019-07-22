@@ -17,8 +17,8 @@
           <div class="form-control" style="height:100px; border:solid 1px lightgray;border-radius:10px; width:900px; padding-top:3px;">
             <% if @contact.comments.present? %>
               <% @contact.comments.each do |comment| %>
-                <p><%= comment.user.email %> : <%= comment.body %>
-                  <%= link_to "삭제하기", comment_path(comment), data:{method: :delete}, class:"btn btn-dark"%>
+                <p style = "margin-left:5px;"><%= comment.user.email %> : <%= comment.body %>
+                  <%= link_to "삭제하기", comment_path(comment), data:{method: :delete}, class:"btn btn-dark mx-1"%>
                 </p>
               <% end %>
             <% end %>
@@ -26,7 +26,7 @@
           <div class="reply-area" style="padding-top:15px;">
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :contact_id, value: @contact.id %>
-            <%= f.text_field :body, class: "form-control", style: "border:solid 1px lightgray;border-radius:10px; padding-top:5px;" %>
+            <%= f.text_field :body, class: "form-control",placeholder: "답변 내용을 적어주세요." , style: "border:solid 1px lightgray;border-radius:10px; padding-top:5px;" %>
           </div>
           <div class="button-group mt-3">
             <div class="btn btn-dark ml-2" style="float:right;">
@@ -35,7 +35,7 @@
             <div class="btn btn-dark ml-2" style=float:right;>
               <%= link_to "문의내역 ", contacts_path, style:"color:white" %>
             </div>
-            <input type="submit" value="답변달기" class="btn btn-dark" style="float:right">
+            <input type = "submit" value = "답변달기" class = "btn btn-dark" style = "float:right;">
           </div>
         <% end %>
       <% end %>
