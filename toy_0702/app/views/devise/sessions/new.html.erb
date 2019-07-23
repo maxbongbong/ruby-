@@ -1,4 +1,4 @@
-<div class="container col-md-6" style=padding:3rem; >
+<div class="container col-md-4 mt-4" style="padding:2rem; outline:auto; width:25rem; outline:auto;" >
   <h2>Log in </h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group my-4">
@@ -15,7 +15,7 @@
         <%= f.label :remember_me %>
       </div>
     <% end %>
-    <button class= "btn btn-dark" style="float:right;">
+    <button class= "btn btn-dark" style="float:right; margin-right:1rem;">
       <%= "Log in" %>
     </button>
   <% end %>
