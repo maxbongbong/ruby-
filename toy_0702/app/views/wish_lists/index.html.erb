@@ -33,8 +33,9 @@
             <td><%= wish_list.product.title %></td>
             <td><%= wish_list.product.body %></td>
             <td><%= number_with_delimiter(wish_list.product.price) %></td>
-            <td><%= link_to "삭제하기", wish_list_path(wish_list), class:"btn btn-dark", style:"", data:{method: :delete} %>
-                <%= link_to "장바구니", add_cart_line_items_path(product_id: wish_list.product.id), class:"btn btn-dark" %>
+            <td>
+              <%= link_to "장바구니", add_cart_line_items_path(product_id: wish_list.product.id), class:"btn btn-dark mr-2" %>
+              <%= link_to "삭제하기", wish_list_path(wish_list), class:"btn btn-dark", style:"", data:{method: :delete, confirm: "삭제하시겠습니까?"} %>
             </td>
           </tr>
         <% end %>

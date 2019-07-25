@@ -46,7 +46,7 @@
                 </div>
               </div>
             </td>
-            <td><%= link_to "삭제하기", line_item_path(line_item),class:"btn btn-dark", style:"", data:{method: :delete} %></td>
+            <td><%= link_to "삭제하기", line_item_path(line_item),class:"btn btn-dark", style:"", data:{method: :delete, confirm: "삭제하시겠습니까?"} %></td>
           </tr>
         <% end %>
       <% else %>

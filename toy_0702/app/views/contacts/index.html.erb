@@ -48,11 +48,11 @@
                 <% end %>
               </td>
           <td>
-            <div class="btn btn-light" style="margin-top:">
+            <div class="btn btn-light mr-2" style="margin-top:">
               <%= link_to "수정하기", edit_contact_path(contact) %>
             </div>
             <div class="btn btn-light">
-              <%= link_to "삭제하기", contact_path(contact), data:{method: :delete} %>
+              <%= link_to "삭제하기", contact_path(contact), data:{method: :delete, confirm: "삭제하시겠습니까?"} %>
             </div>
           </td>
         <% end %>
