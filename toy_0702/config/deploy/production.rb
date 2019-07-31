@@ -59,6 +59,6 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '[server-ip]', user: '[deploy-username]', roles: %w{web app db}
-set :nginx_server_name, '[domain-name]'
-set :unicorn_workers, 4 
+server '52.79.146.123', user: 'leebonghee', roles: %w{web app db}
+set :nginx_server_name, 'Mega_Pump'
+set :unicorn_workers, 4
